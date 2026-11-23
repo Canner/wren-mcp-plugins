@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "wren": {
+      "url": "${WREN_MCP_URL}",
+      "variables": [
+        {
+          "name": "WREN_MCP_URL",
+          "title": "Wren AI MCP endpoint",
+          "description": "https://cloud.getwren.ai/api/mcp for Wren AI Cloud, or <your Wren AI origin>/api/mcp for a self-hosted install."
+        }
+      ]
+    }
+  }
+}

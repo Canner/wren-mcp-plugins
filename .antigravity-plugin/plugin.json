@@ -1,0 +1,19 @@
+{
+  "name": "wren-ai-cloud",
+  "displayName": "Wren AI",
+  "version": "0.1.0",
+  "description": "Ask governed questions of your Wren AI projects from Antigravity: semantic SQL, answers, summaries and charts over MCP, signed in with your Wren AI account.",
+  "author": {
+    "name": "Canner, Inc.",
+    "url": "https://getwren.ai"
+  },
+  "homepage": "https://getwren.ai",
+  "repository": "https://github.com/Canner/wren-agy-plugin",
+  "license": "AGPL-3.0-only",
+  "logo": "assets/logo.png",
+  "suggestedPrompts": [
+    "List my Wren AI projects and what each one covers",
+    "What are the key metrics in my project, and how are they doing lately?",
+    "Chart how one of my key metrics has changed over time"
+  ]
+}
