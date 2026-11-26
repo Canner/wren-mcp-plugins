@@ -24,7 +24,7 @@
       "title": "Wren AI MCP endpoint",
       "description": "https://cloud.getwren.ai/api/mcp for Wren AI Cloud, or <your Wren AI origin>/api/mcp for a self-hosted install.",
       "default": "https://cloud.getwren.ai/api/mcp",
-      "required": true
+      "required": false
     }
   }
 }
