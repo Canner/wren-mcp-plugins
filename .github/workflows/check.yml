@@ -9,9 +9,9 @@ permissions:
   contents: read
 
 jobs:
-  generated:
+  copies:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Generated skills and LICENSE copies are up to date
-        run: python3 ./setup --check
+      - name: Host copies of skills and LICENSE match the root
+        run: scripts/sync-hosts.sh --check
