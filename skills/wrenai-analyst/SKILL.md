@@ -29,7 +29,9 @@ business. If the data is ambiguous or insufficient, say so.
    rows or `generate_summary` for rows plus a summary. Never invent tables or
    columns that `get_project_metadata` does not list.
 4. **Charts.** Call `generate_chart` with the question and the final SQL.
-{{CHART_INSTRUCTIONS}}
+   If it returns an image, show it. If it returns a Vega-Lite spec, render it
+   when you can, otherwise describe what the chart shows. Keep the text answer
+   short and refer to the chart.
 5. **In the answer**, give every number with what it measures and the time
    window behind it, and show the SQL when the user may want to check it. Do
    not state numbers that did not come from a tool result. Never ask the user
@@ -63,7 +65,7 @@ original `ask` returned.
 
 | Error | What to tell the user |
 |---|---|
-| Wren AI tools are not available | {{TOOLS_MISSING_HINT}} |
+| Wren AI tools are not available | The Wren AI MCP server is not connected. Check that it is enabled in this app's MCP or plugin settings and that you are signed in to Wren AI. |
 | `Organization has not enabled API access` | Enable API access in Wren AI under **Settings > Billing > API Usage**. |
 | `No deployment found` | Deploy the project in Wren AI first. |
 | SQL error from `run_sql` | Do not show it as the answer. Retry with `ask`, or rephrase the question. |
