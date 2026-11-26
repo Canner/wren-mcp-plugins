@@ -1,0 +1,73 @@
+---
+name: wrenai-analyst
+description: Answer data questions through Wren AI (governed semantic layer over the user's warehouse). Use for any question about metrics, trends, comparisons or breakdowns that needs numbers from the user's Wren AI projects.
+---
+
+<!-- Generated from skills/wrenai-analyst/SKILL.md.tmpl and fragments/antigravity/ by ./setup. Do not edit by hand. -->
+
+# Wren AI analyst
+
+The Wren AI MCP server signs in as the user, so every answer respects their
+project membership and data-access policies. Use only its tools for data.
+Lead with the answer, cite the numbers, and say what they mean for the
+business. If the data is ambiguous or insufficient, say so.
+
+## Workflow
+
+1. **Pick the project.** Call `list_projects` once per conversation. Match the
+   question against each project's description, metadata, models and example
+   questions. If more than one project could answer, ask the user which one.
+   Pass the chosen `projectId` to every other tool.
+2. **Answer the question.** Prefer `ask`: Wren generates the SQL from the
+   project's semantic layer and business rules, runs it, and summarizes the
+   result. Pass the returned `threadId` back on follow-up questions so Wren
+   keeps the context. If the user writes in a language other than English,
+   pass `language` (for example `zh-TW`).
+   - If `ask` returns `needs_clarification`, show the question to the user and
+     send their answer with `respond_clarification` (`queryId`, `questionId`,
+     `threadId` from that result).
+3. **When you need control over the SQL**, call `generate_sql`, adjust it if
+   needed using the schema from `get_project_metadata`, then `run_sql` for raw
+   rows or `generate_summary` for rows plus a summary. Never invent tables or
+   columns that `get_project_metadata` does not list.
+4. **Charts.** Call `generate_chart` with the question and the final SQL.
+   It returns a rendered chart image. Keep the text answer short and refer to
+   the chart.
+5. **In the answer**, give every number with what it measures and the time
+   window behind it, and show the SQL when the user may want to check it. Do
+   not state numbers that did not come from a tool result. Never ask the user
+   to write SQL.
+
+## Recording the user's verdict
+
+Skip this section if the server has no `submit_feedback` tool.
+
+`ask`, `generate_sql`, `generate_summary` and `generate_chart` return an
+`answerId` with each answer. Keep it; the user never needs to see it. A failed
+call can be rated too when its error ends with `(answerId: …)`. An answer that
+finishes after `respond_clarification` is rated under the `answerId` that the
+original `ask` returned.
+
+- When the user says a result is wrong, gives a corrected value, filter or
+  definition, or asks you to flag or report it, call `submit_feedback` with
+  rating `down`. When they say it is right or useful, use `up`.
+- Pass the `answerId` of the call that produced the result. Do not ask the
+  user to confirm first. If you cannot tell which result they mean, ask.
+- Put the user's own words in `comment` and `correction`. Never rate from your
+  own judgment, and do not treat a bare "thanks" or a new question as a
+  verdict.
+- Send one call per verdict. A report cannot be withdrawn, and a changed
+  verdict is recorded as a new one.
+- After it succeeds, say in one short sentence that the feedback was recorded.
+  Do not promise a fix. If the verdict was `down` and you can get a better
+  answer, call `ask` again.
+
+## Errors
+
+| Error | What to tell the user |
+|---|---|
+| Wren AI tools are not available | Check that the Wren AI plugin is enabled under Customizations > Plugins and that `WREN_MCP_URL` is set, then sign in when Antigravity opens the browser. |
+| `Organization has not enabled API access` | Enable API access in Wren AI under **Settings > Billing > API Usage**. |
+| `No deployment found` | Deploy the project in Wren AI first. |
+| SQL error from `run_sql` | Do not show it as the answer. Retry with `ask`, or rephrase the question. |
+| `submit_feedback` fails | The feedback was **not** recorded; offer to retry. If the error says the answer predates feedback or has no trace, say this answer cannot be rated and offer to ask again. If it says feedback storage is not configured, say this deployment cannot record feedback and do not retry. |

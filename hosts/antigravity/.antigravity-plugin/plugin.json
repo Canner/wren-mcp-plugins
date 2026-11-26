@@ -1,5 +1,5 @@
 {
-  "name": "wren-ai-cloud",
+  "name": "wren-ai",
   "displayName": "Wren AI",
   "version": "0.1.0",
   "description": "Ask governed questions of your Wren AI projects from Antigravity: semantic SQL, answers, summaries and charts over MCP, signed in with your Wren AI account.",
@@ -8,8 +8,8 @@
     "url": "https://getwren.ai"
   },
   "homepage": "https://getwren.ai",
-  "repository": "https://github.com/Canner/wren-agy-plugin",
-  "license": "AGPL-3.0-only",
+  "repository": "https://github.com/Canner/wren-mcp-plugins",
+  "license": "Apache-2.0",
   "logo": "assets/logo.png",
   "suggestedPrompts": [
     "List my Wren AI projects and what each one covers",
