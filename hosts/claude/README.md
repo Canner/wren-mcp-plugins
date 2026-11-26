@@ -21,7 +21,7 @@ policies.
 ## Install
 
 ```
-/plugin marketplace add Canner/wren-mcp-plugins
+/plugin marketplace add https://raw.githubusercontent.com/Canner/wren-mcp-plugins/main/hosts/claude/.claude-plugin/marketplace.json
 /plugin install wren-ai@wren-mcp-plugins
 ```
 

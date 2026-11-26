@@ -7,7 +7,7 @@ OAuth; there is no API key to configure.
 | Host | Directory | Install | Self-hosted Wren AI |
 |---|---|---|---|
 | Google Antigravity | [`hosts/antigravity`](hosts/antigravity) | Antigravity plugin marketplace | Set `WREN_MCP_URL` |
-| Claude Code | [`hosts/claude`](hosts/claude) | `/plugin marketplace add Canner/wren-mcp-plugins` | `/plugin configure wren-ai` |
+| Claude Code | [`hosts/claude`](hosts/claude) | Marketplace in `hosts/claude` (see its README) | `/plugin configure wren-ai` |
 | ChatGPT and Codex | [`hosts/chatgpt`](hosts/chatgpt) | ChatGPT plugin directory | Add a custom MCP server |
 
 ## Layout
@@ -17,7 +17,6 @@ skills/wrenai-analyst/SKILL.md   the shared skill; edit this one
 hosts/<host>/                    what each host installs, committed as is
   skills/                        copy of skills/
   LICENSE                        copy of LICENSE
-.claude-plugin/marketplace.json  Claude Code marketplace, points at hosts/claude
 scripts/sync-hosts.sh            copies skills/ and LICENSE into each host
 ```
 
@@ -41,7 +40,7 @@ Validate each host:
 ```bash
 agy plugin validate --strict hosts/antigravity
 claude plugin validate --strict --profile directory hosts/claude
-claude plugin validate --strict .   # the marketplace
+claude plugin validate --strict hosts/claude/.claude-plugin/marketplace.json
 ```
 
 ChatGPT has no validator CLI; CI checks `hosts/chatgpt/*.json` against the
