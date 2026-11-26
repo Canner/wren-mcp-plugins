@@ -1,0 +1,35 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "wren-ai",
+  "version": "0.1.0",
+  "description": "Ask governed questions of your Wren AI projects: semantic SQL, answers, summaries and charts over MCP, signed in with your Wren AI account.",
+  "author": {
+    "name": "Canner, Inc.",
+    "url": "https://getwren.ai"
+  },
+  "homepage": "https://getwren.ai",
+  "repository": "https://github.com/Canner/wren-mcp-plugins",
+  "license": "Apache-2.0",
+  "keywords": ["wren-ai", "analytics", "sql", "semantic-layer", "business-intelligence"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Wren AI",
+        "shortDescription": "Governed answers on your data",
+        "longDescription": "Connect to your Wren AI projects and ask questions in natural language. Wren AI turns each question into SQL using your project's models, metrics and business rules, runs it on your warehouse, and summarizes the result. Check and adjust the generated SQL, chart any answer, and ask follow-up questions that keep the context. You sign in with your Wren AI account, so every answer respects your project access and data policies. If an answer is wrong, say so and it is reported to your project admins so they can fix the semantic layer.",
+        "developerName": "Canner, Inc.",
+        "category": "Productivity",
+        "capabilities": ["Read"],
+        "websiteURL": "https://getwren.ai",
+        "privacyPolicyURL": "https://www.getwren.ai/privacy-policy",
+        "defaultPrompt": [
+          "List my Wren AI projects and what each one covers",
+          "What are the key metrics in my project, and how are they doing lately?",
+          "Chart how one of my key metrics has changed over time"
+        ],
+        "logo": "./assets/logo.png",
+        "composerIcon": "./assets/logo.png"
+      }
+    }
+  }
+}

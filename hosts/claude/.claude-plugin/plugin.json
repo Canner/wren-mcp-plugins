@@ -1,0 +1,30 @@
+{
+  "name": "wren-ai",
+  "displayName": "Wren AI",
+  "version": "0.1.0",
+  "description": "Ask governed questions of your Wren AI projects: semantic SQL, answers, summaries and charts over MCP, signed in with your Wren AI account.",
+  "author": {
+    "name": "Canner, Inc.",
+    "url": "https://getwren.ai"
+  },
+  "homepage": "https://getwren.ai",
+  "repository": "https://github.com/Canner/wren-mcp-plugins",
+  "privacyPolicyUrl": "https://www.getwren.ai/privacy-policy",
+  "license": "Apache-2.0",
+  "keywords": [
+    "wren-ai",
+    "analytics",
+    "sql",
+    "semantic-layer",
+    "mcp"
+  ],
+  "userConfig": {
+    "server_url": {
+      "type": "string",
+      "title": "Wren AI MCP endpoint",
+      "description": "https://cloud.getwren.ai/api/mcp for Wren AI Cloud, or <your Wren AI origin>/api/mcp for a self-hosted install.",
+      "default": "https://cloud.getwren.ai/api/mcp",
+      "required": true
+    }
+  }
+}

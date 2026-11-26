@@ -1,0 +1,15 @@
+{
+  "name": "wren-mcp-plugins",
+  "owner": {
+    "name": "Canner, Inc.",
+    "url": "https://getwren.ai"
+  },
+  "description": "Wren AI plugins for Claude Code",
+  "plugins": [
+    {
+      "name": "wren-ai",
+      "source": "./hosts/claude",
+      "description": "Ask governed questions of your Wren AI projects over MCP."
+    }
+  ]
+}
